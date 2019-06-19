@@ -1,5 +1,5 @@
 // Load data from hours-of-tv-watched.csv
-d3.csv("./data.csv")
+d3.csv("assets/data/data.csv")
   .then(function (dData) {
     var svgW = 960;
     var svgH = 500;
@@ -10,7 +10,7 @@ d3.csv("./data.csv")
     var y = dData.map(data => Number(data.healthcare));
     var ytext = "Lacks Healthcare(%)";
     var xtext = "In Poverty(%)";
-   
+
     bubblePlot(x, y, xtext, ytext, circleData, "#scatter", svgW, svgH);
   });
 
@@ -62,7 +62,7 @@ function bubblePlot(x, y, xtext, ytext, circleData, thetag, svgWidth, svgHeight)
 
   // Step 5: Create Circles
   // ==============================
-  
+
   var circlesGroup = chartGroup.selectAll("circle")
     .data(circleData)
     .enter()
@@ -73,9 +73,7 @@ function bubblePlot(x, y, xtext, ytext, circleData, thetag, svgWidth, svgHeight)
     .attr("fill", "pink")
     .attr("opacity", ".5");
 
-  console.log("SHOW ME");
-  console.log(circleData);
-    var textGroup = chartGroup.selectAll("text")
+  var textGroup = chartGroup.selectAll("text")
     .data(circleData)
     .enter()
     .append("text")
@@ -86,7 +84,7 @@ function bubblePlot(x, y, xtext, ytext, circleData, thetag, svgWidth, svgHeight)
     .attr("font-size", "12px")
     .attr("fill", "blue")
     .attr("text-anchor", "middle");
-  
+
   // Step 6: Initialize tool tip
   // ==============================
   var toolTip = d3.select("body").append("div")
